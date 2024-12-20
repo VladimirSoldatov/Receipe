@@ -1,6 +1,8 @@
 ﻿using Receipt;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 
 namespace WpfApp1
@@ -10,28 +12,30 @@ namespace WpfApp1
     /// </summary>
     public partial class CreateRecept : Window
     {
+        ObservableCollection<string> myComponents;
         public CreateRecept()
         {
             InitializeComponent();
+             myComponents = new ObservableCollection<string>();
+            itemControl1.ItemsSource = myComponents;
+            
+   
         }
-        LoadResources loadResources;
+   
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LoadResources loadResources = new LoadResources("components.txt");
+        
         }
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            loadResources = new LoadResources("Components.txt");
+      
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_Add_Component(object sender, RoutedEventArgs e)
         {
-            List<Components> arrayList = loadResources.GetComponents();
-            if (arrayList != null)
-            {
-                string[]  names =  arrayList.Select(p => p.Name).ToArray();
-                label1.Content += String.Join(",", names);
-                CreateDocument();
-            }              
+            if (!String.IsNullOrEmpty(componentContent.Text))
+                myComponents.Add(componentContent.Text);
+            else
+                MessageBox.Show("Ошибка, введите компонент!");
         }
         private void CreateDocument()
         {
@@ -139,6 +143,16 @@ namespace WpfApp1
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

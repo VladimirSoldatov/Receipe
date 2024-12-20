@@ -7,17 +7,30 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Создание рецепта" Height="450" Width="800" Loaded="OnLoad">
+        Title="Создание рецепта" Height="450" Width="800" Loaded="OnLoad" DataContext="myComponents">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="397*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="1"  HorizontalAlignment="Center">
+        <WrapPanel  HorizontalAlignment="Left" Margin="220,384,0,0" Grid.RowSpan="2">
             <Button Height="30" Width="100" Margin="10,10, 10,10" Click="Button_Click_1">1</Button>
             <Button Height="30" Width="100" Margin="10,10, 10,10">2</Button>
             <Button Height="30" Width="100" Margin="10,10, 10,10" Click="Button_Click">3</Button>
         </WrapPanel>
         <Label x:Name="label1" Content="Ингридиенты блюда: " HorizontalAlignment="Left" Margin="53,40,0,0" VerticalAlignment="Top"/>
+        <ItemsControl x:Name="itemControl1" Grid.Row="0" Margin="183,40,14,254">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <TextBox x:Name="componentContent" HorizontalAlignment="Left" Margin="53,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="125"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="53,113,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_Add_Component"/>
     </Grid>
 </Window>

@@ -19,11 +19,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            //BitmapImage image = new BitmapImage();
-            //image.BeginInit();
-            //image.UriSource = new Uri("c:/soldatovVV/fruits.jpeg", UriKind.Relative);
-            //image.EndInit();
-            //imageBrush1.ImageSource = image;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

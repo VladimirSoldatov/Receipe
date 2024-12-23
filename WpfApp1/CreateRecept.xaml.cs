@@ -17,7 +17,7 @@ namespace WpfApp1
         {
             InitializeComponent();
              myComponents = new ObservableCollection<string>();
-            itemControl1.ItemsSource = myComponents;
+            ListViewTableBorder.ItemsSource = myComponents;
             
    
         }
@@ -33,7 +33,10 @@ namespace WpfApp1
         private void Button_Click_Add_Component(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(componentContent.Text))
+            {
                 myComponents.Add(componentContent.Text);
+                componentContent.Text = String.Empty;
+            }
             else
                 MessageBox.Show("Ошибка, введите компонент!");
         }
@@ -153,6 +156,12 @@ namespace WpfApp1
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void ListViewTableBorder_Selected(object sender, RoutedEventArgs e)
+        {
+            if(sender is not ListBox)
+                return;
+            myComponents.Remove($"{(sender as ListBox).SelectedValue}");
         }
     }
 }

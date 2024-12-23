@@ -163,5 +163,10 @@ namespace WpfApp1
                 return;
             myComponents.Remove($"{(sender as ListBox).SelectedValue}");
         }
+
+        private void componentContent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

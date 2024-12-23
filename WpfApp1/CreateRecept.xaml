@@ -17,9 +17,9 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="550"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.05*"/>
         </Grid.ColumnDefinitions>
 
             <WrapPanel Grid.Row="3"  Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0">
@@ -35,7 +35,7 @@
                     <ListBox HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" x:Name="ListViewTableBorder" SelectionChanged="ListViewTableBorder_Selected" ItemsSource="{Binding Path=ItemsSource}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="Blue">
+                                <Border BorderBrush="Blue" BorderThickness="1">
                                     <TextBlock Text="{Binding}"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="20"/>
                                 </Border>
                             </DataTemplate>
@@ -57,9 +57,15 @@
             <Label HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center">
                 <Label Grid.Row ="0" x:Name = "Label" Content="Название рецепта"/>
             </Label>
-            <TextBox Grid.Column="1" Grid.Row="0"  Height="50" FontSize="16"/>
+            <TextBox Grid.Column="1" Grid.Row="0"  Height="50" FontSize="16" TextWrapping="Wrap"/>
 
         <Label Content="Описание рецепта:" HorizontalAlignment="Left" Margin="30,30,0,0" Grid.Row="2" VerticalAlignment="Top" />
-        <TextBox  Grid.Column="1"  Grid.Row="2" FontSize="16"/>
+        <RichTextBox  Grid.Column="1"  Grid.Row="2"  FontSize="16" Foreground="BlueViolet">
+            <FlowDocument>
+                <Paragraph LineHeight="5">
+                    
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </Window>

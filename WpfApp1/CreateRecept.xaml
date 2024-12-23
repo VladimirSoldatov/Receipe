@@ -7,9 +7,9 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Создание рецепта" Height="450" Width="800" Loaded="OnLoad" DataContext="myComponents">
+        Title="Создание рецепта" Height="450" Width="800" Loaded="OnLoad" DataContext="myComponents" WindowStartupLocation="CenterScreen">
 
-    <Grid>
+    <Grid x:Name="GridContext">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition/>
@@ -22,10 +22,10 @@
             <ColumnDefinition Width="0.05*"/>
         </Grid.ColumnDefinitions>
 
-            <WrapPanel Grid.Row="3"  Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0">
+        <WrapPanel Grid.Row="3"  Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0">
             <Button Height="30" Width="100" Margin="10,10, 10,10" Click="Button_Click_1">1</Button>
-            <Button Height="30" Width="100" Margin="10,10, 10,10">2</Button>
-            <Button Height="30" Width="100" Margin="10,10, 10,10" Click="Button_Click">3</Button>
+            <Button Height="30" Width="100" Margin="10,10, 10,10" Click="Button_Click">2</Button>
+            <Button Height="30" Width="100" Content="3"/>
         </WrapPanel>
         <Label Grid.Row="1" Grid.Column="0" x:Name="label1" Content="Ингридиенты блюда: " HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top"/>
         <Grid Grid.Row="1" Grid.Column="1">
@@ -54,18 +54,14 @@
         <TextBox Grid.Row="1" Grid.Column="0"  x:Name="componentContent" HorizontalAlignment="Left" Margin="30,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125" TextChanged="componentContent_TextChanged"/>
         <Button Grid.Row="1" Content="Button" HorizontalAlignment="Left" Margin="30,113,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_Add_Component"/>
 
-            <Label HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center">
-                <Label Grid.Row ="0" x:Name = "Label" Content="Название рецепта"/>
-            </Label>
-            <TextBox Grid.Column="1" Grid.Row="0"  Height="50" FontSize="16" TextWrapping="Wrap"/>
+        <Label HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center">
+            <Label Grid.Row ="0" x:Name = "Label" Content="Название рецепта"/>
+        </Label>
+        <TextBox x:Name="receiptName" Text="{Binding Path=Name}" Grid.Column="1" Grid.Row="0"  Height="50" FontSize="16" TextWrapping="Wrap" />
 
         <Label Content="Описание рецепта:" HorizontalAlignment="Left" Margin="30,30,0,0" Grid.Row="2" VerticalAlignment="Top" />
-        <RichTextBox  Grid.Column="1"  Grid.Row="2"  FontSize="16" Foreground="BlueViolet">
-            <FlowDocument>
-                <Paragraph LineHeight="5">
-                    
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+        <TextBox Text="{Binding Path=Description}" x:Name="receiptText" Grid.Column="1"  Grid.Row="2"  FontSize="16" Foreground="BlueViolet" TextWrapping="Wrap" >
+       
+        </TextBox>
     </Grid>
 </Window>

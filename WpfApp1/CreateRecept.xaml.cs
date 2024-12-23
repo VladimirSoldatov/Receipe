@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 
 namespace WpfApp1
@@ -12,14 +13,18 @@ namespace WpfApp1
     /// </summary>
     public partial class CreateRecept : Window
     {
-        ObservableCollection<string> myComponents;
+
+        public ReceiptClass myReceipt { set; get; }
+        Binding myBinding = new Binding();
         public CreateRecept()
         {
             InitializeComponent();
-             myComponents = new ObservableCollection<string>();
-            ListViewTableBorder.ItemsSource = myComponents;
-            
-   
+             myReceipt = new ReceiptClass();
+            ListViewTableBorder.ItemsSource = myReceipt.Components;
+
+
+            this.DataContext = myReceipt;
+
         }
    
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -34,7 +39,7 @@ namespace WpfApp1
         {
             if (!String.IsNullOrEmpty(componentContent.Text))
             {
-                myComponents.Add(componentContent.Text);
+                myReceipt.Components.Add(componentContent.Text);
                 componentContent.Text = String.Empty;
             }
             else
@@ -150,18 +155,19 @@ namespace WpfApp1
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
+            myReceipt = null;
+            DialogResult = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = true;
         }
         private void ListViewTableBorder_Selected(object sender, RoutedEventArgs e)
         {
             if(sender is not ListBox)
                 return;
-            myComponents.Remove($"{(sender as ListBox).SelectedValue}");
+            myReceipt.Components.Remove($"{(sender as ListBox).SelectedValue}");
         }
 
         private void componentContent_TextChanged(object sender, TextChangedEventArgs e)

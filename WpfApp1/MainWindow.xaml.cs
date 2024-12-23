@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Receipt;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,6 +17,7 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<ReceiptClass> receipts = new List<ReceiptClass>();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace WpfApp1
             if(createRecept.ShowDialog() == true)
             {
 
+                receipts.Add(createRecept.myReceipt);
             }
             this.Show();
         }

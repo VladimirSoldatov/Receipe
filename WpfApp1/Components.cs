@@ -18,13 +18,13 @@ namespace Receipt
         string Error { get; }
         string this[string columnName] { get; }
     }
-    public class ReceiptClass:IDataErrorInfo
+    public class ReceiptClass//:IDataErrorInfo
     {
         public string Name { set; get; } = String.Empty;
         public ObservableCollection<string> Components { set; get; } = new ObservableCollection<string>();
         public string Description { set; get; } = String.Empty;
 
-        public string Error => throw new NotImplementedException();
+        //public string Error => throw new NotImplementedException();
 
         public string this[string columnName]
         {

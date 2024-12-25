@@ -1,5 +1,7 @@
 ﻿using Receipt;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +25,18 @@ namespace WpfApp1
             InitializeComponent();
 
         }
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            if (!File.Exists("Components.json"))
+                return;
+            using (StreamReader sw = new StreamReader("Components.json"))
+            {
+                    if (sw.BaseStream is null)
+                        return;
+                receipts = JsonSerializer.Deserialize<List<ReceiptClass>>(sw.BaseStream)??new List<ReceiptClass>();
 
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -38,6 +51,11 @@ namespace WpfApp1
             {
 
                 receipts.Add(createRecept.myReceipt);
+            }
+            using (StreamWriter sw = new StreamWriter("Components.json"))
+            {
+                JsonSerializer.Serialize<List<ReceiptClass>>(sw.BaseStream, receipts);
+                
             }
             this.Show();
         }

@@ -12,17 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace Receipt
 {
     /// <summary>
-    /// Логика взаимодействия для SearchRecept.xaml
+    /// Логика взаимодействия для SearchReceipt.xaml
     /// </summary>
-    public partial class SearchRecept : Window
+    public partial class SearchReceipt : Window
     {
-        public SearchRecept()
+        public List<ReceiptClass> Receipts { get; set; } = new List<ReceiptClass>();
+        public SearchReceipt()
         {
             InitializeComponent();
-           
+            
         }
     }
 }

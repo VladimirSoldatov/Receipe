@@ -24,7 +24,7 @@ namespace Receipt
         public ObservableCollection<string> Components { set; get; } = new ObservableCollection<string>();
         public string Description { set; get; } = String.Empty;
 
-        //public string Error => throw new NotImplementedException();
+ 
 
         public string this[string columnName]
         {

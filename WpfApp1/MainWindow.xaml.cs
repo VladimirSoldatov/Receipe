@@ -17,12 +17,14 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
-        List<ReceiptClass> receipts = new List<ReceiptClass>();
+        public  List<ReceiptClass> receipts = new List<ReceiptClass>();
         public MainWindow()
         {
             InitializeComponent();
+             DataContext = receipts;
 
         }
         private void OnLoad(object sender, RoutedEventArgs e)
@@ -39,7 +41,14 @@ namespace WpfApp1
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            SearchReceipt searchReceipt = new SearchReceipt() { Receipts = receipts};
+            searchReceipt.Owner = this;
+            searchReceipt.DataContext = receipts;
+            if (searchReceipt.ShowDialog() == true)
+            {
 
+          
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

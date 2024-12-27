@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Word;
+using Receipt;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -70,6 +71,17 @@ namespace Receipt
         }
 
     }
+    public class ReceiptContaner
+    {
+        public List<ReceiptClass> Receipts { set; get; }
+        public string [] GetNames{ 
+            get
+            {
+                return Receipts.Select(x => x.Name).ToArray() ?? new string[0] ;
+            }
+        }
+
+    }
     public class RichTextBoxHelper : DependencyObject
     {
         public static string GetDocumentXaml(DependencyObject obj)
@@ -119,5 +131,6 @@ namespace Receipt
                     }
                 });
     }
+
 
 }

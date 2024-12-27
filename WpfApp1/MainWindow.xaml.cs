@@ -20,11 +20,11 @@ namespace WpfApp1
 
     public partial class MainWindow : Window
     {
-        public  List<ReceiptClass> receipts = new List<ReceiptClass>();
+        public ReceiptContaner receiptContaner = new ReceiptContaner();
         public MainWindow()
         {
             InitializeComponent();
-             DataContext = receipts;
+             DataContext = receiptContaner.Receipts;
 
         }
         private void OnLoad(object sender, RoutedEventArgs e)
@@ -33,17 +33,16 @@ namespace WpfApp1
                 return;
             using (StreamReader sw = new StreamReader("Components.json"))
             {
-                    if (sw.BaseStream is null)
-                        return;
-                receipts = JsonSerializer.Deserialize<List<ReceiptClass>>(sw.BaseStream)??new List<ReceiptClass>();
+                    if (sw.BaseStream is not null)
+                   receiptContaner.Receipts = JsonSerializer.Deserialize<List<ReceiptClass>>(sw.BaseStream)??new List<ReceiptClass>();
 
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SearchReceipt searchReceipt = new SearchReceipt() { Receipts = receipts};
+            SearchReceipt searchReceipt = new SearchReceipt() {DataContext = receiptContaner.GetNames};
             searchReceipt.Owner = this;
-            searchReceipt.DataContext = receipts;
+
             if (searchReceipt.ShowDialog() == true)
             {
 
@@ -59,11 +58,11 @@ namespace WpfApp1
             if(createRecept.ShowDialog() == true)
             {
 
-                receipts.Add(createRecept.myReceipt);
+                receiptContaner.Receipts.Add(createRecept.myReceipt);
             }
             using (StreamWriter sw = new StreamWriter("Components.json"))
             {
-                JsonSerializer.Serialize<List<ReceiptClass>>(sw.BaseStream, receipts);
+                JsonSerializer.Serialize<List<ReceiptClass>>(sw.BaseStream, receiptContaner.Receipts);
                 
             }
             this.Show();

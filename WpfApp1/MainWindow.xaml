@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Книга рецептов" Height="450" Width="800" Loaded="OnLoad">
+        Title="Книга рецептов" Height="450" Width="800" Loaded="OnLoad" Unloaded="UnLoad">
     <Window.Background>
         <ImageBrush x:Name="myImage" ImageSource="pack://application:,,,/fruits.jpeg"/>
     </Window.Background>
@@ -16,13 +16,13 @@
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Content="Создать новый рецепт" Margin="5" Width="141" Click="Button_Click_1"/>
-            <Button Content="Удалить рецепт" Margin="5" Width="106" Click="Button_Click"/>
+            <Button Content="Удалить рецепт" Margin="5" Width="106" Click="Button_Delete"/>
             <Button Content="Изменить" Margin="5" Width="93" Click="Button_Click"/>
             <Button Content="Сохранить в файл" Margin="5"  Width="119" Click="Button_Click"/>
             <Button Content="Открыть" Margin="5" Width="74" Click="Button_Click"/>
         </WrapPanel>
         <ScrollViewer>
-            <ListBox Opacity="0.75"  Grid.Row="0" x:Name="listBoxOpen" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Path=ItemsSource}">
+            <ListBox Opacity="0.75"  Grid.Row="0" x:Name="listBoxOpen" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource ="{Binding Path=ItemsSource, UpdateSourceTrigger=PropertyChanged}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Blue" BorderThickness="1">

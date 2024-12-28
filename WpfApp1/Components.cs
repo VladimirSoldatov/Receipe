@@ -3,6 +3,7 @@ using Receipt;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -71,7 +72,7 @@ namespace Receipt
         }
 
     }
-    public class ReceiptContaner
+    public class ReceiptContaner: INotifyPropertyChanged
     {
         public List<ReceiptClass> Receipts { set; get; }
         public string [] GetNames{ 
@@ -81,6 +82,7 @@ namespace Receipt
             }
         }
 
+        public event PropertyChangedEventHandler? PropertyChanged = delegate { };
     }
     public class RichTextBoxHelper : DependencyObject
     {

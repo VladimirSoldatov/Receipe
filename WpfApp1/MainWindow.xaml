@@ -15,10 +15,27 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Content="Создать новый рецепт" Margin="5" Width="141" Click="Button_Click_1"/>
-        <Button Content="Удалить рецепт" Margin="5" Width="200" Click="Button_Click"/>
-        <Button Content="Изменить" Margin="5" Width="93" Click="Button_Click"/>
-        <Button Content="Сохранить в файл" Margin="5" Width="184" Click="Button_Click"/>
+            <Button Content="Создать новый рецепт" Margin="5" Width="141" Click="Button_Click_1"/>
+            <Button Content="Удалить рецепт" Margin="5" Width="106" Click="Button_Click"/>
+            <Button Content="Изменить" Margin="5" Width="93" Click="Button_Click"/>
+            <Button Content="Сохранить в файл" Margin="5" Width="184" Click="Button_Click"/>
+            <Button Content="Открыть" Margin="5" Width="184" Click="Button_Click"/>
         </WrapPanel>
+        <ScrollViewer>
+            <ListBox Opacity="0.75"  Grid.Row="0" x:Name="listBoxOpen" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Path=ItemsSource}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Blue" BorderThickness="1">
+                            <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="Black" FontSize="20"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel IsItemsHost="True" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </ScrollViewer>
     </Grid>
 </Window>
